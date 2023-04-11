@@ -44,5 +44,32 @@ oison_taxon <- readr::read_csv(file="Data/oison/oison_taxon.csv") %>%
   dplyr::select(c(observation_id,date)) %>%
   view() #exclusion d'une plage
 
+oison_taxon <- readr::read_csv(file="Data/oison/oison_taxon.csv") %>%
+  dplyr::select(starts_with(("nom"))) %>%
+  view()
 
 
+oison_taxon <- readr::read_csv(file="Data/oison/oison_taxon.csv") %>%
+  dplyr::select(ends_with(("id"))) %>%
+  view()
+
+oison_taxon <- readr::read_csv(file="Data/oison/oison_taxon.csv") %>%
+  dplyr::select(contains("recherche")) %>%
+  view()
+
+oison_taxon <- readr::read_csv(file="Data/oison/oison_taxon.csv") %>%
+  dplyr::select(contains("recherche")|contains("obs")) %>%
+  view()
+
+#avec la fct any_of
+vecteur_nom <- c("nom_vernaculaire","nom_PMCC","date")
+oison_taxon <- readr::read_csv(file="Data/oison/oison_taxon.csv") %>%
+  dplyr::select(any_of(vecteur_nom)) %>%
+  view()
+
+#pour voir autres cheat sheet dplyr
+#select(where(is.numeric))
+oison_taxon <- readr::read_csv(file="Data/oison/oison_taxon.csv") %>%
+  dplyr::filter(nom_scientifique=="Canis lupus") %>%
+  dplyr::select(observation_id:nom_vernaculaire) %>%
+  view()
